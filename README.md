@@ -22,6 +22,17 @@ First, install [peco](https://github.com/peco/peco), an interactive filtering to
 
 Next, install this plugin with [Fisher](https://github.com/jorgebucaran/fisher).
 
-```
+```sh
 fisher install Hiroya-W/peco-tmux.fish
+```
+
+If you want this function to run automatically when fish is executed, add the following to the end of `~/.config/fish/config.fish`.
+
+```sh
+# ~/.config/fish/config.fish
+
+# Auto-start when not in tmux.
+if test -z $TMUX
+    peco-tmux-attach
+end
 ```
