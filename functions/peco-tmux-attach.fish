@@ -10,8 +10,9 @@ function peco-tmux-attach
     set ID (echo $recent | cut -d: -f1)
 
     if test "$ID" = "$NEW_SESSION_MSG"
-        tmux new-session
+        tmux new-session -d
+        tmux list-sessions | tail -n 1 | cut -d: -f1 | xargs tmux switch-client -t
     else if test -n "$ID"
-        tmux attach-session -t "$ID"
+        tmux switch-client -t "$ID"
     end
 end
